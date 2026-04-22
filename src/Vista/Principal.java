@@ -79,9 +79,9 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void GestionProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionProductosMenuItemActionPerformed
-        GestionProductos gestionProductos = new GestionProductos(controlador);
-        escritorio.add(gestionProductos);
-        gestionProductos.show(); 
+//        GestionProductos gestionProductos = new GestionProductos(controlador);
+//        escritorio.add(gestionProductos);
+//        gestionProductos.show(); 
     }//GEN-LAST:event_GestionProductosMenuItemActionPerformed
 
     /**
