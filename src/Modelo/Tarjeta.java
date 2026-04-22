@@ -31,8 +31,6 @@ public class Tarjeta {
     
     // Constructor vacio
     public Tarjeta() {
-        this.descripcion = "";
-        this.categoria = "";
     }
     
     // Constructor sobrecargado
