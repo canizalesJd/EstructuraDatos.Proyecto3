@@ -1,5 +1,5 @@
 package Vista;
-import Controlador.Controlador;
+// import Controlador.Controlador;
 
 /*
  * Universidad Estatal a Distancia (UNED)
@@ -13,7 +13,7 @@ import Controlador.Controlador;
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
-    private final Controlador controlador = new Controlador();
+    // private final Controlador controlador = new Controlador();
     
     /**
      * Creates new form Principal
