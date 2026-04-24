@@ -155,17 +155,33 @@ public class Controlador {
     }
 
     // Metodo para contar tarjetas de super heroes y super villanos
-    public String contarSuperCategorias() {
-        return "Pendiente de implementar";
+    public String contarCategoriasSuper() {
+        return "Cantidad de tarjetas de Súper héroes o Súper villanos: "
+                + arbol.contarCategoriasSuper();
     }
 
     // Metodo para listar hojas de frases iconicas
-    public String listarFrasesIconicasHoja() {
-        return "Pendiente de implementar";
-    }
+    public String listarFrasesIconicas() {
+        String texto = arbol.listarFrasesIconicas();
 
-    // Metodo para obtener la tarjeta mayor y menor
+        if (texto == null || texto.trim().isEmpty()) {
+            return "No hay tarjetas de la categoria Frases icónicas en nodos hoja.";
+        }
+
+        return texto;
+    }
+    
+    // Metodo para obtener la tarjeta con menor y mayor id
     public String obtenerMayorYMenor() {
-        return "Pendiente de implementar";
+        return arbol.obtenerMayorYMenor();
+    }
+    
+    // Metodo para limpiar el ultimo guion de los recorridos
+    private String limpiarSalida(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return "";
+        }
+
+        return texto;
     }
 }

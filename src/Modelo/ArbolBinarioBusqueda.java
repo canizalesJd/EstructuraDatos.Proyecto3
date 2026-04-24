@@ -242,4 +242,104 @@ public class ArbolBinarioBusqueda {
         // Formar string con los items del arbol
         sb.append(actual.data.getId()).append("-");
     }
+    
+    // Metodo para contar tarjetas de super heroes y super villanos
+    public int contarCategoriasSuper() {
+        return contarCategoriasSuperRec(raiz);
+    }
+
+    // Metodo recursivo para contar categorias especiales
+    private int contarCategoriasSuperRec(Nodo actual) {
+        // Si el nodo es nulo, no cuenta nada
+        if (actual == null) {
+            return 0;
+        }
+
+        // Contar en ambos subarboles
+        int contador = contarCategoriasSuperRec(actual.izquierdo)
+                + contarCategoriasSuperRec(actual.derecho);
+
+        // Verificar si la categoria corresponde
+        if ("Súper héroes".equalsIgnoreCase(actual.data.getCategoria())
+                || "Súper villanos".equalsIgnoreCase(actual.data.getCategoria())) {
+            contador++;
+        }
+
+        return contador;
+    }
+    
+    // Metodo para listar hojas de frases iconicas
+    public String listarFrasesIconicas() {
+        StringBuilder sb = new StringBuilder();
+        listarFrasesIconicasRec(raiz, sb);
+        return sb.toString();
+    }
+
+    // Metodo recursivo para listar hojas de frases iconicas
+    private void listarFrasesIconicasRec(Nodo actual, StringBuilder sb) {
+        // Si el nodo es nulo, no hace nada
+        if (actual == null) {
+            return;
+        }
+
+        // Verificar si es hoja (no tiene subarboles o nodos hijos)
+        boolean esHoja = actual.izquierdo == null && actual.derecho == null;
+
+        // Si es hoja y es de la categoria correcta, agregar descripcion
+        if (esHoja && "Frases icónicas".equalsIgnoreCase(actual.data.getCategoria())) {
+            sb.append(actual.data.getDescripcion()).append(" - ");
+        }
+
+        // Seguir recorriendo
+        listarFrasesIconicasRec(actual.izquierdo, sb);
+        listarFrasesIconicasRec(actual.derecho, sb);
+    }
+    
+    // Metodo para obtener la tarjeta con menor id
+    public Tarjeta obtenerMenor() {
+        // Verificar que no este vacio
+        if (raiz == null) {
+            return null;
+        }
+
+        // Ir lo mas a la izquierda posible
+        Nodo actual = raiz;
+        while (actual.izquierdo != null) {
+            actual = actual.izquierdo;
+        }
+
+        return actual.data;
+    }
+    
+    // Metodo para obtener la tarjeta con mayor id
+    public Tarjeta obtenerMayor() {
+        // Verificar que no este vacio
+        if (raiz == null) {
+            return null;
+        }
+
+        // Ir lo mas a la derecha posible
+        Nodo actual = raiz;
+        while (actual.derecho != null) {
+            actual = actual.derecho;
+        }
+
+        return actual.data;
+    }
+    
+    // Metodo para obtener menor y mayor en un solo texto
+    public String obtenerMayorYMenor() {
+        // Obtener los nodos
+        Tarjeta menor = obtenerMenor();
+        Tarjeta mayor = obtenerMayor();
+
+        // Si no hay datos, mostrar mensaje
+        if (menor == null || mayor == null) {
+            return "No hay tarjetas registradas.";
+        }
+
+        // Construir el mensaje
+        return "Menor: " + menor.getId() + " | " + menor.getDescripcion() + " | " + menor.getCategoria()
+                + "\nMayor: " + mayor.getId() + " | " + mayor.getDescripcion() + " | " + mayor.getCategoria();
+    }
 }
