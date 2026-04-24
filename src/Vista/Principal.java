@@ -1,19 +1,19 @@
 package Vista;
-// import Controlador.Controlador;
+import Controlador.Controlador;
 
 /*
  * Universidad Estatal a Distancia (UNED)
  * Cuatrimestre: I Cuatrimestre 2026
- * Proyecto: Proyecto Evaluativo - Estructura de Datos
+ * Proyecto: Proyecto 3 - Estructura de Datos
  * Descripción: Formulario Principal del sistema
  * Estudiante: Jose David Canizales Azocar
- * Fecha: Marzo 2026
+ * Fecha: Abril 2026
  */
 
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
-    // private final Controlador controlador = new Controlador();
+    private final Controlador controlador = new Controlador();
     
     /**
      * Creates new form Principal
@@ -34,10 +34,10 @@ public class Principal extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         barraMenu = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
-        GestionProductosMenuItem = new javax.swing.JMenuItem();
+        GestionTarjetasMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Reposteria");
+        setTitle("Sistema de Tarjetas");
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -52,13 +52,13 @@ public class Principal extends javax.swing.JFrame {
 
         Menu.setText("Menu");
 
-        GestionProductosMenuItem.setText("Gestion de Productos");
-        GestionProductosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        GestionTarjetasMenuItem.setText("Gestion de Tarjetas");
+        GestionTarjetasMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GestionProductosMenuItemActionPerformed(evt);
+                GestionTarjetasMenuItemActionPerformed(evt);
             }
         });
-        Menu.add(GestionProductosMenuItem);
+        Menu.add(GestionTarjetasMenuItem);
 
         barraMenu.add(Menu);
 
@@ -78,11 +78,11 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void GestionProductosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionProductosMenuItemActionPerformed
-//        GestionProductos gestionProductos = new GestionProductos(controlador);
-//        escritorio.add(gestionProductos);
-//        gestionProductos.show(); 
-    }//GEN-LAST:event_GestionProductosMenuItemActionPerformed
+    private void GestionTarjetasMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionTarjetasMenuItemActionPerformed
+        GestionTarjetas gestionProductos = new GestionTarjetas(controlador);
+        escritorio.add(gestionProductos);
+        gestionProductos.show(); 
+    }//GEN-LAST:event_GestionTarjetasMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,7 +110,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem GestionProductosMenuItem;
+    private javax.swing.JMenuItem GestionTarjetasMenuItem;
     private javax.swing.JMenu Menu;
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JDesktopPane escritorio;
