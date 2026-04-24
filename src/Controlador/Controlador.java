@@ -175,13 +175,4 @@ public class Controlador {
     public String obtenerMayorYMenor() {
         return arbol.obtenerMayorYMenor();
     }
-    
-    // Metodo para limpiar el ultimo guion de los recorridos
-    private String limpiarSalida(String texto) {
-        if (texto == null || texto.isEmpty()) {
-            return "";
-        }
-
-        return texto;
-    }
 }
