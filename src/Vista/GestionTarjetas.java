@@ -1,6 +1,7 @@
 package Vista;
 import Controlador.Controlador;
 import static Modelo.Tarjeta.CATEGORIA;
+import javax.swing.JOptionPane;
 
 /*
  * Universidad Estatal a Distancia (UNED)
@@ -312,15 +313,15 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-       // capturarDatosFormulario();
+       capturarDatosFormulario();
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        // TODO add your handling code here:
+        capturarBusqueda();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
+        capturarEliminacion();
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonPreordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreordenActionPerformed
@@ -330,10 +331,151 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
     private void botonInordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInordenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonInordenActionPerformed
-
-    // Metodos propios
+ 
+    // ================ Metodos de Registro ================
     
-        
+    // Limpia todos los campos del formulario dejandolos en su estado inicial.
+    private void limpiarFormulario() {
+        this.idTarjeta.setText("");
+        this.descripcion.setText("");
+        this.categoria.setSelectedIndex(0);
+        this.idTarjeta.requestFocus();
+    }
+    
+    // Valida que los campos del formulario no esten vacios antes de registrar.
+    private void validarCampos() {
+        String id = this.idTarjeta.getText().trim();
+        String descripcion = this.descripcion.getText().trim();
+        String categoria = (String) this.categoria.getSelectedItem();
+
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("El campo Id es obligatorio.");
+        }
+
+        if (descripcion.isEmpty()) {
+            throw new IllegalArgumentException("El campo Nombre es obligatorio.");
+        }
+
+        if (categoria == null || categoria.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debe seleccionar una categoria.");
+        }
+    }
+    
+    /**
+     * Captura los datos del formulario, valida su formato e intenta
+     * registrar la tarjeta.
+    */
+    private void capturarDatosFormulario() {
+        try {
+            // Validar los campos del formulario
+            validarCampos();
+
+            // Capturar los valores del formulario
+            String idTexto = this.idTarjeta.getText().trim();
+            String descripcionTexto = this.descripcion.getText().trim();
+            String categoriaTexto = (String) this.categoria.getSelectedItem();
+
+            // Intentar registrar la tarjeta
+            controlador.agregarTarjeta(
+                    idTexto,
+                    descripcionTexto,
+                    categoriaTexto
+            );
+
+            // Limpiar el formulario despues de registrar
+            limpiarFormulario();
+
+            // Mostrar mensaje en resultados
+            textoResultado.setText("Tarjeta registrada correctamente.");
+
+        } catch (IllegalArgumentException e) {
+            // Mostrar mensaje de validacion
+            JOptionPane.showMessageDialog(this, 
+                e.getMessage(), 
+                "Error de Validacion", 
+                JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this, 
+                "Error inesperado: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // ================ Metodos de Busqueda y Eliminacion ================
+
+    // Valida que el campo de busqueda y eliminacion no este vacio.
+    private void validarIdBusquedaEliminacion() {
+        String id = this.idTarjetaBuscarEliminar.getText().trim();
+
+        if (id.isEmpty()) {
+            throw new IllegalArgumentException("El campo Id es obligatorio.");
+        }
+    }
+
+    // Captura el id, busca la tarjeta y muestra el resultado.
+    private void capturarBusqueda() {
+        try {
+            // Validar el campo
+            validarIdBusquedaEliminacion();
+
+            // Capturar el id
+            String idTexto = this.idTarjetaBuscarEliminar.getText().trim();
+
+            // Buscar la tarjeta
+            String resultado = controlador.buscarTarjeta(idTexto);
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (IllegalArgumentException e) {
+            // Mostrar error de validacion
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(),
+                    "Error de Validacion",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Captura el id, elimina la tarjeta y muestra el resultado.
+    private void capturarEliminacion() {
+        try {
+            // Validar el campo
+            validarIdBusquedaEliminacion();
+
+            // Capturar el id
+            String idTexto = this.idTarjetaBuscarEliminar.getText().trim();
+
+            // Eliminar la tarjeta
+            String resultado = controlador.eliminarTarjeta(idTexto);
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (IllegalArgumentException e) {
+            // Mostrar error de validacion
+            JOptionPane.showMessageDialog(this,
+                    e.getMessage(),
+                    "Error de Validacion",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // ================ Metodos Varios ================
+    
     // Cargar categorias en el combobox
     private void cargarCategorias() {
         categoria.setModel(
