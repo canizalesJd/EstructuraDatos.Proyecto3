@@ -95,7 +95,7 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
 
         lblCategoria.setText("Categoria");
 
-        lblDescripcion.setText("Nombre");
+        lblDescripcion.setText("Descripcion");
 
         botonCancelar.setText("Cancelar");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
