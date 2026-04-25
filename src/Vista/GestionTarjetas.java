@@ -143,14 +143,39 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
         });
 
         botonPostorden.setText("Postorden");
+        botonPostorden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPostordenActionPerformed(evt);
+            }
+        });
 
         botonContar.setText("Contar");
+        botonContar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonContarActionPerformed(evt);
+            }
+        });
 
         botonHojas.setText("Hojas");
+        botonHojas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonHojasActionPerformed(evt);
+            }
+        });
 
         botonMayorMenor.setText("Mayor / Menor");
+        botonMayorMenor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMayorMenorActionPerformed(evt);
+            }
+        });
 
         botonConsultaAdicional.setText("Consulta Adicional");
+        botonConsultaAdicional.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonConsultaAdicionalActionPerformed(evt);
+            }
+        });
 
         tituloResultados.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         tituloResultados.setText("Resultados");
@@ -308,8 +333,8 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_idTarjetaActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        //limpiarFormulario();
-        this.dispose();
+        limpiarFormulario();
+        // this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
@@ -325,12 +350,32 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonPreordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPreordenActionPerformed
-        // TODO add your handling code here:
+        mostrarPreorden();
     }//GEN-LAST:event_botonPreordenActionPerformed
 
     private void botonInordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInordenActionPerformed
-        // TODO add your handling code here:
+        mostrarInorden();
     }//GEN-LAST:event_botonInordenActionPerformed
+
+    private void botonPostordenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPostordenActionPerformed
+        mostrarPostorden();
+    }//GEN-LAST:event_botonPostordenActionPerformed
+
+    private void botonContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContarActionPerformed
+        mostrarConteoSuper();
+    }//GEN-LAST:event_botonContarActionPerformed
+
+    private void botonHojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonHojasActionPerformed
+       mostrarHojasFrasesIconicas();
+    }//GEN-LAST:event_botonHojasActionPerformed
+
+    private void botonMayorMenorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMayorMenorActionPerformed
+        mostrarMayorYMenor();
+    }//GEN-LAST:event_botonMayorMenorActionPerformed
+
+    private void botonConsultaAdicionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultaAdicionalActionPerformed
+        mostrarConsultaAdicional();
+    }//GEN-LAST:event_botonConsultaAdicionalActionPerformed
  
     // ================ Metodos de Registro ================
     
@@ -474,6 +519,134 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
         }
     }
     
+    // ================ Metodos de Consultas ================
+
+    // Muestra el recorrido en preorden.
+    private void mostrarPreorden() {
+        try {
+            // Obtener el recorrido
+            String resultado = controlador.obtenerPreorden();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Muestra el recorrido en inorden.
+    private void mostrarInorden() {
+        try {
+            // Obtener el recorrido
+            String resultado = controlador.obtenerInorden();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    // Muestra el recorrido en postorden.
+    private void mostrarPostorden() {
+        try {
+            // Obtener el recorrido
+            String resultado = controlador.obtenerPostorden();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Muestra la cantidad de tarjetas de categorias super
+    private void mostrarConteoSuper() {
+        try {
+            // Obtener el conteo
+            String resultado = controlador.contarCategoriasSuper();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Muestra las hojas de la categoria frases iconicas.
+    private void mostrarHojasFrasesIconicas() {
+        try {
+            // Obtener el resultado
+            String resultado = controlador.listarFrasesIconicas();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Muestra la tarjeta menor y la tarjeta mayor.
+    private void mostrarMayorYMenor() {
+        try {
+            // Obtener el resultado
+            String resultado = controlador.obtenerMayorYMenor();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Metodo para la consulta adicional.
+    private void mostrarConsultaAdicional() {
+        try {
+            // Obtener el resultado
+            String resultado = controlador.obtenerConsultaAdicional();
+
+            // Mostrar resultado
+            textoResultado.setText(resultado);
+
+        } catch (Exception e) {
+            // Mostrar error inesperado
+            JOptionPane.showMessageDialog(this,
+                    "Error inesperado: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     // ================ Metodos Varios ================
     
     // Cargar categorias en el combobox

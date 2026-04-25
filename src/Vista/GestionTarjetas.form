@@ -318,26 +318,41 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Postorden"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonPostordenActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonContar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Contar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonContarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonHojas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Hojas"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonHojasActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonMayorMenor">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mayor / Menor"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMayorMenorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonConsultaAdicional">
       <Properties>
         <Property name="text" type="java.lang.String" value="Consulta Adicional"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonConsultaAdicionalActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="separador3">
     </Component>

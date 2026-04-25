@@ -175,4 +175,26 @@ public class Controlador {
     public String obtenerMayorYMenor() {
         return arbol.obtenerMayorYMenor();
     }
+    
+    // Metodo para obtener la consulta adicional'
+    public String obtenerConsultaAdicional() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Total de tarjetas de Súper héroes o Súper villanos: ")
+          .append(arbol.contarCategoriasSuper())
+          .append("\n\n");
+
+        sb.append("Tarjetas de Frases icónicas en nodos hoja:\n");
+        String frases = arbol.listarFrasesIconicas();
+        if (frases == null || frases.trim().isEmpty()) {
+            sb.append("No hay tarjetas registradas.");
+        } else {
+            sb.append(frases);
+        }
+
+        sb.append("\n\n");
+        sb.append(arbol.obtenerMayorYMenor());
+
+        return sb.toString();
+    }
 }
