@@ -1,7 +1,7 @@
 package Controlador;
 import Modelo.ArbolBinarioBusqueda;
 import Modelo.Tarjeta;
-import java.util.InputMismatchException;
+import Modelo.Nodo;
 
 /*
  * Universidad Estatal a Distancia (UNED)
@@ -137,6 +137,11 @@ public class Controlador {
             default:
                 return "No se pudo eliminar la tarjeta.";
         }
+    }
+    
+    // Metodo para obtener la raiz del arbol
+    public Nodo obtenerRaiz() {
+        return arbol.getRaiz();
     }
     
     // Metodo para obtener el recorrido preorden

@@ -69,7 +69,7 @@ public class GraficoArbol extends JPanel {
         g2.setFont(new Font("SansSerif", Font.BOLD, 12));
 
         // Dibujar el arbol desde la raiz
-        int centroX = getWidth() / 2;
+        int centroX = getWidth() / 4;
         dibujarNodo(g2, raiz, centroX, MARGEN_SUPERIOR, ESPACIO_X_INICIAL);
 
         g2.dispose();

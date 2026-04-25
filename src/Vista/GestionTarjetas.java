@@ -1,6 +1,7 @@
 package Vista;
 import Controlador.Controlador;
 import static Modelo.Tarjeta.CATEGORIA;
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 
 /*
@@ -19,11 +20,15 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
      */
     
     private final Controlador controlador;
+    private final GraficoArbol graficoArbol;
     
     public GestionTarjetas(Controlador controlador) {
         this.controlador = controlador;
+        this.graficoArbol = new GraficoArbol();
         initComponents();
         cargarCategorias();
+        configurarPanelGrafico();
+        graficarArbol();
     }
 
     /**
@@ -452,6 +457,9 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
 
             // Mostrar mensaje en resultados
             textoResultado.setText("Tarjeta registrada correctamente.");
+            
+            // Actualizar el grafico
+            graficarArbol();
 
         } catch (IllegalArgumentException e) {
             // Mostrar mensaje de validacion
@@ -523,6 +531,9 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
 
             // Mostrar resultado
             textoResultado.setText(resultado);
+            
+            // Actualizar el grafico
+            graficarArbol();
 
         } catch (IllegalArgumentException e) {
             // Mostrar error de validacion
@@ -667,9 +678,6 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
         }
     }
     
-    // Metodo para graficar el arbol
-    // Ref: https://www.cs.columbia.edu/~allen/S14/NOTES/DisplaySimpleTree.java
-
     // ================ Metodos Varios ================
     
     // Cargar categorias en el combobox
@@ -678,7 +686,25 @@ public class GestionTarjetas extends javax.swing.JInternalFrame {
             new javax.swing.DefaultComboBoxModel<>(
             CATEGORIA
         ));
-    } 
+    }
+    
+    // Metodo para graficar y refrescar la representacion visual del arbol
+    private void graficarArbol() {
+        graficoArbol.setRaiz(controlador.obtenerRaiz());
+    }
+    
+    
+    // ================ Configuraciones ================
+    
+    // Configuracion del panel de representacion grafica del arbol
+    private void configurarPanelGrafico() {
+        panelGrafico.removeAll();
+        panelGrafico.setLayout(new BorderLayout());
+        panelGrafico.add(graficoArbol, BorderLayout.CENTER);
+        panelGrafico.revalidate();
+        panelGrafico.repaint();
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
